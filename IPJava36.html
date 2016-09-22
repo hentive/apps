@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.button_Alas {position: absolute;     top: 430px;     left: 0px;     width: 100px;     height: 100px;  font-size:120%;}
+.button_Ylos {position: absolute;     top: 0px;     left: 0px;    width: 100px;    height: 100px; font-size:120%;}
+.button_Eteen {position: absolute;    top: 0px;    left: 935px;    width: 100px;    height: 110px; font-size:120%;}
+.button_Taakse {position: absolute;    top: 430px;    left: 935px;    width: 100px;    height: 110px; font-size:120%;}
+
+
+<!--  .button_vyoeteen {position: absolute;    top: 530px;    left: 535px;    width: 100px;    height: 110px; font-size:120%;} -->
+
+.button_Valk {position: absolute;    top: 240px;    left: 310px;    width: 70px;    height: 100px; font-size:105%;}
+.button_Kelt {position: absolute;    top: 345px;    left: 310px;    width: 70px;    height: 100px; font-size:120%;}
+.button_Vihr {position: absolute;    top: 240px;    left: 385px;    width: 70px;    height: 100px; font-size:120%;}
+.button_VihrP {position: absolute;    top: 345px;    left: 385px;    width: 70px;    height: 100px; font-size:120%;}
+.button_Sin {position: absolute;    top: 240px;    left: 460px;    width: 70px;    height: 100px; font-size:120%;}
+.button_SinP {position: absolute;    top: 345px;    left: 460px;    width: 70px;    height: 100px; font-size:120%;}
+.button_Pun {position: absolute;    top: 240px;    left: 535px;    width: 70px;    height: 100px; font-size:120%;}
+.button_PunP {position: absolute;    top: 345px;    left: 535px;    width: 70px;    height: 100px; font-size:120%;}
+.button_Rusk {position: absolute;    top: 240px;    left: 610px;    width: 70px;    height: 100px; font-size:120%;}
+.button_RuskP {position: absolute;    top: 345px;    left: 610px;    width: 70px;    height: 100px; font-size:120%;}
+
+.boxn {position: absolute;    top: 130px;    left: 0px;    width: 300px;    height: 250px;    font-size:240%; border: 3px solid #73AD21;}
+.boxm {position: absolute;    top: 210px;    left: 690px;    width: 330px;    height: 195px;    font-size:240%; border: 3px solid #73AD21;}
+
+.boxmn {position: absolute;    top: -30px;    left: 105px;    width: 820px;    height: 110px; font-size:170%;    border: 3px solid #73AD21;}
+.boxvyoarvo {position: absolute;    top: 130px;    left: 310px;    width:360px;    height: 50px;  font-size:240%;   border: 3px solid #73AD21;}
+.boxvyoarvohuom {position: absolute;    top: 125px;    left: 690px;    width:330px;    height: 80px;  font-size:220%;   border: 3px solid #73AD21;}
+
+.vasttxt {position: absolute;    top: 120px;    left: 0px;    width: 300px;    height: 30px; font-size:150%;   border: 3px solid #73AD21;}
+.itseptxt {position: absolute;    top: 120px;    left: 690px;    width: 330px;    height: 30px; font-size:150%;   border: 3px solid #73AD21;}
+.vyotxt {position: absolute;    top: 120px;    left: 310px;    width: 360px;    height: 30px; font-size:150%;   border: 3px solid #73AD21;}
+</style>
+</head>
+
+<body>
+
+<!--This is a comment. Comments are not displayed in the browser-->
+<!--   <p><font size="6">IP-tekniikat</font></p>    -->
+<!--   xxx    -->
+
+<div class="vasttxt">Vastustajan hyökkäykset</div>
+<div class="itseptxt">Itsepuolustukset</div>
+<div class="vyotxt">vyöarvo</div>
+
+<p class="boxn" id="outputn"></p>
+<p class="boxm" id="outputm"></p>
+<p class="boxmn" id="outputnm"></p>
+<p class="boxvyoarvo" id="outputvyoarvo"></p>
+<p class="boxvyoarvohuom" id="outputvyoarvohuom"></p>
+
+<p id="outputnm"></p>
+<p id="outputnnn"></p>
+<p id="outputmmm"></p>
+<p id="outputxxx"></p>
+<p id="outputyyy"></p>
+
+<button class="button_Alas" onclick="Alas()">Edellinen hyökkäys</button>
+<button class="button_Ylos" onclick="Ylos()">Seuraava hyökkäys</button>
+<button class="button_Taakse" onclick="Vas()">Edellinen  puolustus</button>
+<button class="button_Eteen" onclick="Oik()">Seuraava puolustus</button>   
+<!--  <button class="button_vyoeteen" onclick="vyoeteen()">Seuraava vyötekniikka</button>  -->
+<button class="button_Valk" onclick="Valk()">Valkoinen 10</button> 
+<button class="button_Kelt" onclick="Kelt()">Keltainen 9</button>
+<button class="button_Vihr" onclick="Vihr()">Vihreä 8</button>
+<button class="button_VihrP" onclick="VihrP()">Vihreä +1  7</button>
+<button class="button_Sin" onclick="Sin()">Sininen 6</button>
+<button class="button_SinP" onclick="SinP()">Sininen +1 5</button>
+<button class="button_Pun" onclick="Pun()">Punainen 4</button>
+<button class="button_PunP" onclick="PunP()">Punainen +1 3</button>
+<button class="button_Rusk" onclick="Rusk()">Ruskea 2</button>
+<button class="button_RuskP" onclick="RuskP()">Ruskea +1 1</button>
+
+
+
+<script>
+
+kup=0;
+
+var myarray=new Array(50); //n oli 5
+for (i=0; i <50; i++)
+myarray[i]=new Array(50); //m oli 5
+
+
+for (n = 0; n < 50; n++) {  	for (m = 0; m < 50; m++)  { myarray[n][m]=""; }}
+n=0;
+m=0;
+
+myarray[0][1]="Irtautuminen";
+myarray[0][2]="Käsipuukko";
+myarray[0][3]="Kainalolukko";
+myarray[0][4]="Pyyhkäisy";
+myarray[0][5]="Rannekaato";
+myarray[0][6]="Rannelukko";
+myarray[0][7]="Sivukontrolli ja 1)lonkkaheitto  2)koukkaus  3)taaksekaato";
+myarray[0][8]="Poliisiote";
+myarray[0][9]="Kaato jalan yli";
+myarray[0][10]="Käsivarsiheitto";
+myarray[0][11]="Veto jalasta";
+myarray[0][12]="Takavasaralukko";
+myarray[0][13]="Nostokaato";
+myarray[0][14]="Uhrautumisheitto";
+myarray[0][15]="Kaato taakse";
+myarray[0][16]="Ennakointi, Sprawl, Sivulle";
+
+myarray[1][0]="Suora ote ranteesta";
+myarray[2][0]="Ristiote ranteesta";
+myarray[3][0]="Molemmista ranteista";
+myarray[4][0]="Kyynärvarresta edestä";
+myarray[5][0]="Olkapäästä edestä";
+myarray[6][0]="Edestä niskan takaa painaen (*ei pain)";
+myarray[7][0]="Suora ote rinnuksista";
+myarray[8][0]="Rinnuksista vääntäen";
+myarray[9][0]="Käsillä rinnuksista työntö";
+myarray[10][0]="Käsillä rinnuksista veto";
+myarray[11][0]="Edestä käsien päältä syleily";
+myarray[12][0]="Edestä käsien alta syleily";
+myarray[13][0]="Kuristus edestä/ sivulta/ takaa";
+myarray[14][0]="Giljotin-kuristus";
+myarray[15][0]="Kyynärkuristus sivulta pystyssä";
+myarray[16][0]="Kyynärkuristus sivulta lyönnillä";
+myarray[17][0]="Kyynärkuristus sivulta alas painaen";
+myarray[18][0]="Takaa molemmista ranteista";
+myarray[19][0]="Takaa kyynärpäistä";
+myarray[20][0]="Takaa olkapäistä";
+myarray[21][0]="Takaa kauluksesta";
+myarray[22][0]="Takaa käsien päältä syleily";
+myarray[23][0]="Takaa käsien alta syleily";
+myarray[24][0]="Kyynärkuristus takaa paikaltaan";
+myarray[25][0]="Kyynärkuristus takaa vetäen";
+myarray[26][0]="Suoraa lyöntiä vastaan (etu) (*taka)";
+myarray[27][0]="Koukkulyöntiä vastaan (takakäden)";
+myarray[28][0]="Etupotkua vastaan";
+myarray[29][0]="Kiertopotkua vastaan";
+myarray[30][0]="Sivupotkua vastaan";
+myarray[31][0]="Alasvientiä jaloista vastaan";
+
+myarray[1][1]="10";
+myarray[1][2]="10";
+myarray[1][3]="9";
+myarray[1][4]="9";
+myarray[1][6]="8";
+
+myarray[2][1]="10";
+myarray[2][2]="10";
+myarray[2][3]="9";
+myarray[2][5]="9";
+
+myarray[3][1]="10";
+
+myarray[4][4]="7";
+
+myarray[5][2]="7";
+myarray[5][3]="5";
+myarray[5][4]="7";
+
+myarray[6][2]="8";
+myarray[6][3]="8";
+myarray[6][4]="8";
+
+myarray[7][6]="7";
+
+myarray[8][4]="9";
+myarray[8][5]="9";
+
+myarray[9][5]="8";
+
+myarray[10][4]="8";
+myarray[11][7]="4";
+myarray[12][7]="3";
+myarray[13][1]="10";
+myarray[14][13]="2";
+myarray[14][15]="2";
+myarray[15][13]="3";
+myarray[16][8]="4";
+myarray[17][14]="2";
+myarray[18][1]="6";
+myarray[18][5]="6";
+myarray[19][9]="5";
+myarray[20][5]="5";
+myarray[20][8]="5";
+myarray[21][4]="6";
+myarray[22][2]="4";
+myarray[22][10]="4";
+myarray[23][11]="3";
+myarray[23][12]="3";
+myarray[24][10]="2";
+myarray[25][4]="2";
+myarray[26][7]="6";
+myarray[27][7]="5";
+myarray[28][4]="8";
+myarray[29][4]="7";
+myarray[30][4]="7";
+myarray[31][16]="2";
+
+k=0;
+l=0;
+var huom=new Array(50); 
+for (i=0; i <50; i++)
+huom[i]=new Array(50); 
+
+for (k = 1; k < 50; k++) {  	for (l = 1; l < 50; l++)  { huom[k][l]=""; }}
+
+huom[6][2]="Käden alta+";
+huom[6][3]="Käden alta+";
+huom[6][4]="Käden alta+";
+huom[11][7]="Työntö nivustaipeisiin +";
+huom[12][7]="Työntö nivustaipeisiin +";
+huom[26][7]="Torjunta +";
+huom[27][7]="Torjunta +";
+
+document.getElementById("outputnm").innerHTML = "Alla jokaisen vyöasteen tekniikat. Voit myös valita vasemmalta vastustajan hyökkäyksen tai oikealta itsepuolustuksen. ";
+document.getElementById("outputselitys").innerHTML = "uus selitys";
+
+function Ylos() { 
+kup=0;
+myarray[0][0]=""
+do {n++;}
+while (n < 50 && myarray[n][m] == "")
+if (n > 49) {
+n = 0; }
+document.getElementById("outputn").innerHTML = myarray[n][0];
+document.getElementById("outputm").innerHTML = myarray[0][m];
+if (m == 0 && n == 0)  
+{
+document.getElementById("outputnm").innerHTML = "Valitse vasemmalta vastustajan hyökkäys tai oikealta itsepuolustus";   
+document.getElementById("outputvyoarvo").innerHTML =""; 
+document.getElementById("outputm").innerHTML = "Alku";
+document.getElementById("outputn").innerHTML = "Alku";
+}
+else
+if (m == 0) 
+{ document.getElementById("outputnm").innerHTML = "Selaa hyökkäyksiä, tai katso tähän liittyvät itsepuolustukset oikealta";  
+document.getElementById("outputvyoarvo").innerHTML =""; 
+} 
+else
+if (n == 0)  
+{document.getElementById("outputnm").innerHTML = "Selaa itsepuolustuksia, tai katso tähän liittyvät hyökkäykset vasemmalta";
+document.getElementById("outputvyoarvo").innerHTML =""; 
+}
+else {
+document.getElementById("outputnm").innerHTML = "Katso vasemmalta muut hyökkäykset tähän itsepuolustukseen tai oikealta muut itsepuolustukset tähän hyökkäykseen";
+document.getElementById("outputvyoarvo").innerHTML = myarray[n][m]; 
+document.getElementById("outputvyoarvohuom").innerHTML = huom[n][m]; 
+}
+
+document.getElementById("outputnnn").innerHTML = n;
+document.getElementById("outputmmm").innerHTML = m;
+document.getElementById("outputxxx").innerHTML = x;
+document.getElementById("outputyyy").innerHTML = y;
+}
+
+
+function Alas() { 
+kup=0;
+myarray[0][0]=""
+do {n--;}
+while (n > 0 && myarray[n][m] == "")
+if (n < 0)  {
+n = 0;  }
+document.getElementById("outputn").innerHTML = myarray[n][0];
+document.getElementById("outputm").innerHTML = myarray[0][m];
+if (m == 0 && n == 0)  
+{ document.getElementById("outputnm").innerHTML = "Valitse vasemmalta vastustajan hyökkäys tai oikealta itsepuolustus";   
+document.getElementById("outputvyoarvo").innerHTML =""; 
+document.getElementById("outputm").innerHTML = "Alku";
+document.getElementById("outputn").innerHTML = "Alku";
+
+}
+else
+if (m == 0)  
+{document.getElementById("outputnm").innerHTML = "Selaa hyökkäyksiä, tai katso tähän liittyvät itsepuolustukset oikealta";  
+document.getElementById("outputvyoarvo").innerHTML =""; 
+} 
+else
+if (n == 0)  
+{document.getElementById("outputnm").innerHTML = "Selaa itsepuolustuksia, tai katso tähän liittyvät hyökkäykset vasemmalta";
+document.getElementById("outputvyoarvo").innerHTML =""; 
+}
+else {
+document.getElementById("outputnm").innerHTML = "Katso vasemmalta muut hyökkäykset tähän itsepuolustukseen tai oikealta muut itsepuolustukset tähän hyökkäykseen";
+document.getElementById("outputvyoarvo").innerHTML = myarray[n][m]; 
+document.getElementById("outputvyoarvohuom").innerHTML = huom[n][m]; 
+}
+
+document.getElementById("outputnnn").innerHTML = n;
+document.getElementById("outputmmm").innerHTML = m;
+document.getElementById("outputxxx").innerHTML = x;
+document.getElementById("outputyyy").innerHTML = y;
+}
+
+
+function Oik() {  
+kup=0;
+myarray[0][0]=""
+do {m++;}
+while (m < 50 && myarray[n][m] == "")
+if (m > 49) {
+m = 0; }
+document.getElementById("outputn").innerHTML = myarray[n][0];
+document.getElementById("outputm").innerHTML = myarray[0][m];
+if (m == 0 && n == 0)  
+{document.getElementById("outputnm").innerHTML = "Valitse vasemmalta vastustajan hyökkäys tai oikealta itsepuolustus";  
+document.getElementById("outputvyoarvo").innerHTML ="";
+document.getElementById("outputm").innerHTML = "Alku";
+document.getElementById("outputn").innerHTML = "Alku";
+}
+else
+if (n == 0)  
+{document.getElementById("outputnm").innerHTML = "Selaa itsepuolustuksia, tai katso tähän liittyvät hyökkäykset vasemmalta";   
+document.getElementById("outputvyoarvo").innerHTML =""; 
+}
+else
+if (m == 0)  
+{document.getElementById("outputnm").innerHTML = "Selaa hyökkäyksiä, tai katso tähän liittyvät itsepuolustukset oikealta";
+document.getElementById("outputvyoarvo").innerHTML =""; 
+}
+else {
+document.getElementById("outputnm").innerHTML = "Katso vasemmalta muut hyökkäykset tähän itsepuolustukseen tai oikealta muut itsepuolustukset tähän hyökkäykseen";
+document.getElementById("outputvyoarvo").innerHTML = myarray[n][m]; 
+document.getElementById("outputvyoarvohuom").innerHTML = huom[n][m]; 
+}
+
+document.getElementById("outputnnn").innerHTML = n;
+document.getElementById("outputmmm").innerHTML = m;
+document.getElementById("outputxxx").innerHTML = x;
+document.getElementById("outputyyy").innerHTML = y;
+ }
+
+function Vas() {  
+kup=0;
+myarray[0][0]=""
+do {m--;}
+while (m > 0 && myarray[n][m] == "")
+if (m < 0)  {
+m = 0;  }
+document.getElementById("outputn").innerHTML = myarray[n][0];
+document.getElementById("outputm").innerHTML = myarray[0][m];
+if (m == 0 && n == 0) 
+{ document.getElementById("outputnm").innerHTML = "Valitse vasemmalta vastustajan hyökkäys tai oikealta itsepuolustus";   
+document.getElementById("outputvyoarvo").innerHTML =""; 
+document.getElementById("outputm").innerHTML = "Alku";
+document.getElementById("outputn").innerHTML = "Alku";
+}
+else
+if (n == 0) 
+{ document.getElementById("outputnm").innerHTML = "Selaa itsepuolustuksia, tai katso tähän liittyvät hyökkäykset vasemmalta";   
+document.getElementById("outputvyoarvo").innerHTML =""; 
+}
+else
+if (m == 0)
+{  document.getElementById("outputnm").innerHTML = "Selaa hyökkäyksiä, tai katso tähän liittyvät itsepuolustukset oikealta";
+document.getElementById("outputvyoarvo").innerHTML =""; 
+}
+else {
+document.getElementById("outputnm").innerHTML = "Katso vasemmalta muut hyökkäykset tähän itsepuolustukseen tai oikealta muut itsepuolustukset tähän hyökkäykseen";
+document.getElementById("outputvyoarvo").innerHTML = myarray[n][m]; 
+document.getElementById("outputvyoarvohuom").innerHTML = huom[n][m]; 
+}
+
+document.getElementById("outputnnn").innerHTML = n;
+document.getElementById("outputmmm").innerHTML = m;
+document.getElementById("outputxxx").innerHTML = x;
+document.getElementById("outputyyy").innerHTML = y;
+
+
+ }
+
+function vyoeteen() {  
+
+haku: {
+y = n; 
+				for (x = m+1; x < 50; x++) {
+  					if (myarray[y][x] == myarray[n][m])  	{   	
+					n = y;
+					m = x;
+					document.getElementById("outputn").innerHTML = myarray[n][0];
+					document.getElementById("outputm").innerHTML = myarray[0][m];
+					document.getElementById("outputvyoarvo").innerHTML = myarray[n][m];
+document.getElementById("outputvyoarvohuom").innerHTML = huom[n][m]; 
+					document.getElementById("outputnnn").innerHTML = n;
+					document.getElementById("outputmmm").innerHTML = m;
+					document.getElementById("outputxxx").innerHTML = x;
+					document.getElementById("outputyyy").innerHTML = y;
+					break haku;		}
+				 }  <!--  for (x =   -->
+
+for (y = n+1; y < 50; y++) {  
+      				for (x = 1; x < 50; x++) {
+  					if (myarray[y][x] == myarray[n][m])  	{   	
+					n = y;
+					m = x;
+					document.getElementById("outputn").innerHTML = myarray[n][0];
+					document.getElementById("outputm").innerHTML = myarray[0][m];
+					document.getElementById("outputvyoarvo").innerHTML = myarray[n][m];
+document.getElementById("outputvyoarvohuom").innerHTML = huom[n][m]; 
+					document.getElementById("outputnnn").innerHTML = n;
+					document.getElementById("outputmmm").innerHTML = m;
+					document.getElementById("outputxxx").innerHTML = x;
+					document.getElementById("outputyyy").innerHTML = y;
+					break haku;		}
+				 } <!--  for (x =   -->
+			} <!--  for (y =   -->
+
+for (y = 1; y < 50; y++) {  
+      				for (x = 1; x < 50; x++) {
+  					if (myarray[y][x] == myarray[n][m])  	{   	
+					n = y;
+					m = x;
+					document.getElementById("outputn").innerHTML = myarray[n][0];
+					document.getElementById("outputm").innerHTML = myarray[0][m];
+					document.getElementById("outputvyoarvo").innerHTML = myarray[n][m];
+document.getElementById("outputvyoarvohuom").innerHTML = huom[n][m]; 
+					document.getElementById("outputnnn").innerHTML = n;
+					document.getElementById("outputmmm").innerHTML = m;
+					document.getElementById("outputxxx").innerHTML = x;
+					document.getElementById("outputyyy").innerHTML = y;
+					break haku;		}
+				 } <!--  for (x =   -->
+			} <!--  for (y =   -->
+
+} <!--  L haku   -->
+} <!-- F vyoeteen()  -->
+
+
+function Valk() {  if (kup != 10) { kup = 10; 	n = 0; 	m = 0; myarray[n][m]="10";     }  vyoeteen(); }
+function Kelt() {  if (kup != 9) { kup = 9; 	n = 0; 	m = 0; myarray[n][m]="9";     }  vyoeteen(); }
+function Vihr() {  if (kup != 8) { kup = 8; 	n = 0; 	m = 0; myarray[n][m]="8";     }  vyoeteen(); }
+function VihrP() {  if (kup != 7) { kup = 7; 	n = 0; 	m = 0; myarray[n][m]="7";     }  vyoeteen(); }
+function Sin() {  if (kup != 6) { kup = 6; 	n = 0; 	m = 0; myarray[n][m]="6";     }  vyoeteen(); }
+function SinP() {  if (kup != 5) { kup = 5; 	n = 0; 	m = 0; myarray[n][m]="5";     }  vyoeteen(); }
+function Pun() {  if (kup != 4) { kup = 4; 	n = 0; 	m = 0; myarray[n][m]="4";     }  vyoeteen(); }
+function PunP() {  if (kup != 3) { kup = 3; 	n = 0; 	m = 0; myarray[n][m]="3";     }  vyoeteen(); }
+function Rusk() {  if (kup != 2) { kup = 2; 	n = 0; 	m = 0; myarray[n][m]="2";     }  vyoeteen(); }
+function RuskP() {  if (kup != 1) { kup = 1; 	n = 0; 	m = 0; myarray[n][m]="1";     }  vyoeteen(); }
+
+
+</script>
+
+</body>
+</html>
+
